@@ -14,6 +14,6 @@ struct ParsedInput {
     std::vector<Filters> filters_and_params;
 };
 
-ParsedInput Parse(int argc, char** argv);
+ParsedInput Parse(int argc, char **argv);
 
-std::vector<Filters> GetOpt(int argc, char** argv);
+std::vector<Filters> GetOpt(int argc, char **argv);

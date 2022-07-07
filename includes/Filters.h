@@ -4,14 +4,6 @@
 
 #include <vector>
 
-/* Filter's names and their parameters:
- * CropFilter - width, height
- * Grayscale
- * Negative
- * Sharpening
- * Gaussian Blur - sigma
- * Edge Segmentation - threshold */
-
 struct IFilter {
     virtual void Apply(Image &image) const = 0;
 
@@ -37,17 +29,17 @@ protected:
 };
 
 struct EdgeSegmentationFilter : IConvFilter {
-    EdgeSegmentationFilter(const double &threshold) : threshold_(threshold) {};
+    explicit EdgeSegmentationFilter(const double &threshold) : threshold_(threshold) {};
 
     std::vector<std::vector<double>> GetKernel() const override;
 
     void Apply(Image &image) const override;
 
     double threshold_;
-}; //OK
+};
 
 struct GaussBlurFilter : IConvFilter {
-    GaussBlurFilter(const double &sigma) : sigma_(sigma) {};
+    explicit GaussBlurFilter(const double &sigma) : sigma_(sigma) {};
 
     void Apply(Image &image) const override;
 
@@ -58,17 +50,18 @@ struct GaussBlurFilter : IConvFilter {
 
 struct SharpeningFilter : IConvFilter {
     std::vector<std::vector<double>> GetKernel() const override;
+
 public:
     void Apply(Image &image) const override;
-}; //OK
+};
 
 struct NegativeFilter : IColorFilter {
-    Pixel NewColorPixel(Pixel pixel) const override;
-}; // OK
+    [[nodiscard]] Pixel NewColorPixel(Pixel pixel) const override;
+};
 
 struct GrayscaleFilter : IColorFilter {
     Pixel NewColorPixel(Pixel pixel) const override;
-}; //OK
+};
 
 struct CropFilter : IFilter {
     CropFilter(int width, int height) : height_(height), width_(width) {};

@@ -18,7 +18,7 @@ void BMPWriter::Write(const Image &image) {
     file_.write(reinterpret_cast<char *>(&bmp_header_), sizeof(bmp_header_));
     file_.write(reinterpret_cast<char *>(&dib_header_), sizeof(dib_header_));
 
-    int additional_size = 0;
+    int additional_size;
     int full_width = dib_header_.width;
 
     if (dib_header_.width % 4 != 0) {

@@ -2,7 +2,7 @@
 
 #include <utility>
 
-Image::Image(std::vector<std::vector<Pixel>>& data) {
+Image::Image(std::vector<std::vector<Pixel>> &data) {
     picture = std::move(data);
     width_ = picture[0].size();
     height_ = picture.size();

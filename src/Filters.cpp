@@ -93,7 +93,7 @@ void GaussBlurFilter::Apply(Image &image) const {
     }
 }
 
-std::vector<std::vector<double>> GaussBlurFilter::GetKernel() const { return std::vector<std::vector<double>>(); }
+std::vector<std::vector<double>> GaussBlurFilter::GetKernel() const { return {}; }
 
 std::vector<std::vector<double>> SharpeningFilter::GetKernel() const {
     std::vector<std::vector<double>> sharp_matrix = {{0,  -1, 0},

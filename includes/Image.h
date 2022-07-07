@@ -9,7 +9,7 @@ struct Pixel {
 };
 
 struct Image {
-    Image(std::vector<std::vector<Pixel>>& data);
+    Image(std::vector<std::vector<Pixel>> &data);
 
     size_t GetWidth() const;
 

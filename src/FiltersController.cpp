@@ -1,14 +1,14 @@
 #include "../includes/FiltersController.h"
 
-void FiltersController::Apply(Image& image) {
-    std::vector<IFilter*> filters;
+void FiltersController::Apply(Image &image) {
+    std::vector<IFilter *> filters;
 
-    for (const auto& filter : filters_and_params_) {
+    for (const auto &filter: filters_and_params_) {
         FilterMaker filter_maker(filter);
         filters.push_back(filter_maker.MakeFilter());
     }
 
-    for (auto filter : filters) {
+    for (auto filter: filters) {
         filter->Apply(image);
         delete filter;
     }
