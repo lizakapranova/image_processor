@@ -7,10 +7,21 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <iostream>
 
 struct Filters {
     std::string filter;
     std::vector<double> params;
+    int code;
+};
+
+enum Filters_codes {
+    gray_scale,
+    negative,
+    sharpening,
+    edge_segmentation,
+    gaussian_blur,
+    crop
 };
 
 class FiltersController {

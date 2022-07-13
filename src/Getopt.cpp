@@ -45,7 +45,7 @@ std::vector<Filters> GetOpt(int argc, char **argv) {
             try {
                 double width = std::stod(width_str);
                 double height = std::stod(height_str);
-                Filters filter{command, {width, height}};
+                Filters filter{command, {width, height}, 6};
                 filters.push_back(filter);
                 i += 2;
             }
@@ -55,12 +55,19 @@ std::vector<Filters> GetOpt(int argc, char **argv) {
             }
         } else if (command == "-gs" || command == "-neg" || command == "-sharp") {
             Filters filter{command};
+            if (command == "-gs") {
+                filter.code = 1;
+            } else if (command == "-neg") {
+                filter.code = 2;
+            } else {
+                filter.code = 3;
+            }
             filters.push_back(filter);
         } else if (command == "-edge") {
             std::string threshold_str = (argv[i + 1]);
             try {
                 double threshold = std::stod(threshold_str);
-                Filters filter{command, {threshold}};
+                Filters filter{command, {threshold}, 4};
                 filters.push_back(filter);
                 ++i;
             } catch (std::exception()) {
@@ -71,7 +78,7 @@ std::vector<Filters> GetOpt(int argc, char **argv) {
             std::string sigma_str = (argv[i + 1]);
             try {
                 double sigma = std::stod(sigma_str);
-                Filters filter{command, {sigma}};
+                Filters filter{command, {sigma}, 5};
                 filters.push_back(filter);
                 ++i;
             } catch (std::exception()) {

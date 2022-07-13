@@ -1,7 +1,5 @@
 #include "../includes/Filters.h"
 
-#include <cmath>
-
 Pixel IConvFilter::Convolution(size_t &height, size_t &width, std::vector<std::vector<Pixel>> &image) const {
     auto kernel = GetKernel();
     double red = 0;

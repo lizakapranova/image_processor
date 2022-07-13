@@ -15,22 +15,19 @@ void FiltersController::Apply(Image &image) {
 }
 
 IFilter *FilterMaker::MakeFilter() {
-    if (filter_.filter == "-gs") {
-        return new GrayscaleFilter;
+    switch (filter_.code) {
+        case gray_scale:
+            return new GrayscaleFilter;
+        case negative:
+            return new NegativeFilter;
+        case sharpening:
+            return new SharpeningFilter;
+        case edge_segmentation:
+            return new EdgeSegmentationFilter(filter_.params[0]);
+        case gaussian_blur:
+            return new GaussBlurFilter(filter_.params[0]);
+        case crop:
+            return new CropFilter(int(filter_.params[0]), int(filter_.params[1]));
     }
-    if (filter_.filter == "-neg") {
-        return new NegativeFilter;
-    }
-    if (filter_.filter == "-sharp") {
-        return new SharpeningFilter;
-    }
-    if (filter_.filter == "-edge") {
-        return new EdgeSegmentationFilter(filter_.params[0]);
-    }
-    if (filter_.filter == "-blur") {
-        return new GaussBlurFilter(filter_.params[0]);
-    }
-    if (filter_.filter == "-crop") {
-        return new CropFilter(filter_.params[0], filter_.params[1]);
-    }
+    return {};
 }

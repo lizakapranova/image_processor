@@ -3,6 +3,7 @@
 #include "Image.h"
 
 #include <vector>
+#include <cmath>
 
 struct IFilter {
     virtual void Apply(Image &image) const = 0;
@@ -56,7 +57,7 @@ public:
 };
 
 struct NegativeFilter : IColorFilter {
-    [[nodiscard]] Pixel NewColorPixel(Pixel pixel) const override;
+    Pixel NewColorPixel(Pixel pixel) const override;
 };
 
 struct GrayscaleFilter : IColorFilter {

@@ -4,7 +4,6 @@
 #include "includes/Getopt.h"
 #include "includes/Image.h"
 
-
 int main(int argc, char **argv) {
     const ParsedInput parsed_line = Parse(argc, argv);
     BMPReader bmp_input(parsed_line.input_file);

@@ -1,7 +1,5 @@
 #include "../includes/BMPWriter.h"
 
-#include <iostream>
-
 BMPWriter::BMPWriter(std::string const &output_file) {
     file_.open(output_file, std::ios_base::binary);
     if (!file_.is_open()) {
